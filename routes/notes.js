@@ -14,5 +14,5 @@ const query = { id: 2 };
 const note = await notes.findOne(query);
 
 res.json(note);
-// 最後にクロースする
+})
 module.exports = router;
