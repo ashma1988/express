@@ -12,7 +12,7 @@ const notes = database.collection('notes');
 // idが１のドキュメントを取得
 const query = { id: 2 };
 const note = await notes.findOne(query);
-
+console.log("App started");
 res.json(note);
 // 最後にクロースする
 module.exports = router;
