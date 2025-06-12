@@ -1,4 +1,14 @@
 console.log("Server script started");
+const express = require('express');
+const app = express();
+app.use(express.json());
+
+app.get('/ping', (req, res) => {
+  res.send('pong');
+});
+
+app.listen(3000, () => console.log('Server running on port 30180'));
+
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
