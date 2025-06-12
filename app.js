@@ -7,6 +7,10 @@ app.get('/ping', (req, res) => {
   res.send('pong');
 });
 
+app.get('/cat', (req, res) => {
+  res.send('Here is your data');
+});
+
 app.listen(3000, () => console.log('Server running on port 30180'));
 
 var createError = require('http-errors');
