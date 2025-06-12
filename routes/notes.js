@@ -13,6 +13,6 @@ const notes = database.collection('notes');
 const query = { id: 2 };
 const note = await notes.findOne(query);
 
-res.json(note);
+res.json(data);
 })
 module.exports = router;
