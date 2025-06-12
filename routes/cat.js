@@ -1,16 +1,18 @@
 var express = require('express');
 var router = express.Router();
-var request = require('request');
+var fetch = require('node-fetch'); // Using fetch instead of request (request is deprecated)
 
-router.get('/', function (req, res) {
-  request('https://api.thecatapi.com/v1/images/search', function (error, response, body) {
-    if (!error && response.statusCode === 200) {
-      var data = JSON.parse(body);
-      res.json(data);
-    } else {
-      res.status(500).send('Failed to fetch cat image');
+router.get('/', async (req, res) => {
+  try {
+    const response = await fetch('https://api.thecatapi.com/v1/images/search');
+    if (!response.ok) {
+      throw new Error('Failed to fetch cat image');
     }
-  });
+    const data = await response.json();
+    res.json(data);
+  } catch (error) {
+    res.status(500).send(error.message);
+  }
 });
 
 module.exports = router;
