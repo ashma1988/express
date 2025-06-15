@@ -1,18 +1,13 @@
 var express = require('express');
 var router = express.Router();
-var fetch = require('node-fetch'); // Using fetch for API requests
+const request = require('request');
 
-router.get('/', async (req, res) => {
-  try {
-    const response = await fetch('https://dog.ceo/dog-api/');
-    if (!response.ok) {
-      throw new Error('Failed to fetch dog image');
-    }
-    const data = await response.json();
-    res.json(data);
-  } catch (error) {
-    res.status(500).send(error.message);
-  }
+router.get('/', async(req, res) => {
+request('https://images.dog.ceo/breeds/borzoi/n02090622_8814.jpg', function(error, response, body) {
+if(!error && response.statusCode == 200) {
+const data = JSON.parse(body);
+res.json(data);
+}
 });
-
+})
 module.exports = router;
